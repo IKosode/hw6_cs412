@@ -1,9 +1,3 @@
-node_modules/
 .DS_Store
-hw6_tmp/
-uploads/
-assets/
-test_results/
-__MACOSX/
 *.log
-.claude/
+node_modules/
