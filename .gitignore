@@ -3,6 +3,7 @@ node_modules/
 hw6_tmp/
 uploads/
 assets/
+test_results/
 __MACOSX/
 *.log
 .claude/
