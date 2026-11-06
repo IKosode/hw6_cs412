@@ -133,16 +133,16 @@ function createSphere(latBands = 48, lonBands = 64, uRepeat = 2, vRepeat = 1) {
 function createCone(segments = 64, uRepeat = 3) {
   const positions = [], normals = [], tangents = [], texCoords = [], indices = [];
 
-  // Side normals: constant slope from tip to base rim.
+  // Side normals: radius drops by 1 while height rises by 2 → N ∝ (2·radial, 1).
   // Surface: P(θ,t) = ((1-t)*sinθ, 2t-1, (1-t)*cosθ), t=0 at base, t=1 at tip.
-  // Normal from ∂P/∂θ × ∂P/∂t (outward).
-  const slope = Math.SQRT1_2; // radius and height both span 2 → 45°
+  const nLen = Math.hypot(2, 1);
+  const nRadial = 2 / nLen, nY = 1 / nLen;
 
   for (let i = 0; i <= segments; i++) {
     const u = i / segments;
     const theta = 2 * Math.PI * u;
     const s = Math.sin(theta), c = Math.cos(theta);
-    const nx = s * slope, ny = slope, nz = c * slope;
+    const nx = s * nRadial, ny = nY, nz = c * nRadial;
     const tx = c, ty = 0, tz = -s;
 
     // base rim
